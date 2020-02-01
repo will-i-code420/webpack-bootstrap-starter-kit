@@ -1,0 +1,25 @@
+{
+  "name": "webpack-bootstrap-starter-kit",
+  "version": "1.0.0",
+  "description": "Starter Kit with webpack configured and bootstrap added with custom theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaronow/webpack-bootstrap-starter-kit.git"
+  },
+  "keywords": [
+    "starter",
+    "webpack",
+    "bootstrap",
+    "v4"
+  ],
+  "author": "Will Aronow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jaronow/webpack-bootstrap-starter-kit/issues"
+  },
+  "homepage": "https://github.com/jaronow/webpack-bootstrap-starter-kit#readme"
+}
