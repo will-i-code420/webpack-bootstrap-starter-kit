@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -24,6 +25,9 @@ module.exports = {
       title: 'webpack-starter-kit',
       template: path.resolve('./src/index.html')
     }),
+    new CopyPlugin([
+      {from: './src/images', to: 'images/'}
+    ]),
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
@@ -51,8 +55,8 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            outputPath: './images',
-            name: '[name].[ext]'
+            esModule: false,
+            name: 'images/[name].[ext]'
           }
         }]
       },
