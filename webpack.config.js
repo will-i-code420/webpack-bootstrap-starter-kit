@@ -6,6 +6,10 @@ module.exports = {
 
   ],
   module: {
-    
+    rules: [
+      {
+        
+      }
+    ]
   }
 }
