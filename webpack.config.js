@@ -1,9 +1,15 @@
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   mode: 'development',
-  src: ['./src/js/index.js'],
+  entry: ['./src/js/index.js'],
   devtool: 'source-maps',
   plugins: [
-
+    new HtmlWebpackPlugin({
+      title: 'webpack-starter-kit',
+      template: path.resolve('./src/index.html')
+    })
   ],
   module: {
     rules: [
