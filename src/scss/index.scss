@@ -1,3 +1,21 @@
+// all of bootstrap - good for development
+@import "~bootstrap/scss/bootstrap";
+
+/*
+// use below setup for production build using only needed componenets
+// Required For Every Build
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+// Optional Components Based On Use
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/code";
+@import "~bootstrap/scss/grid";
+*/
+
 * {
   padding: 0;
   margin: 0;
@@ -6,4 +24,8 @@
 
 body {
   background-color: green;
+}
+
+#section-1 {
+  height: 100vh;
 }
