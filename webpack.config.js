@@ -1,15 +1,24 @@
 const path = require('path')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   entry: ['./src/js/index.js'],
   devtool: 'source-maps',
+  devServer: {
+    contentBase: path.join(__dirname, 'src'),
+    watchContentBase: true,
+    hot: true,
+    open: true,
+    inline: true
+  },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'webpack-starter-kit',
       template: path.resolve('./src/index.html')
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ],
   module: {
     rules: [
