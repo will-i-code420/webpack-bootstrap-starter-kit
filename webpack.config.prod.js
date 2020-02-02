@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
@@ -8,12 +9,16 @@ image-webpack-loader
 module.exports = {
   mode: 'production',
   entry: ['./src/js/index.js'],
+  output: {
+    path: path.resolve(process.cwd(), 'dist')
+  },
   optimization: {
       minimizer: [
         new OptimizeCSSAssetsPlugin()
       ]
     },
   plugins: [
+    new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'webpack-starter-kit',
