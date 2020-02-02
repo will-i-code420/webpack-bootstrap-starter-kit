@@ -4,7 +4,8 @@
   "description": "Starter Kit with Webpack set up/configured and Bootstrap v4 added with custom theme template for basic website development",
   "main": "./src/js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack-dev-server",
+    "build": "npx webpack --config webpack.config.prod.js --mode=production"
   },
   "repository": {
     "type": "git",
