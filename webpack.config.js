@@ -5,6 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   mode: 'development',
   entry: ['./src/js/index.js'],
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 500,
+    poll: 1500,
+    ignored: /node_modules/
+  },
   devtool: 'source-maps',
   devServer: {
     contentBase: path.join(__dirname, 'src'),
