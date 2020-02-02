@@ -1,5 +1,5 @@
 const path = require('path')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -13,7 +13,7 @@ module.exports = {
       ]
     },
   plugins: [
-    new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       title: 'webpack-starter-kit',
       template: path.resolve('./src/index.html')
