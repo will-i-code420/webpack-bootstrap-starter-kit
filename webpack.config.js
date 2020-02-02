@@ -21,6 +21,10 @@ module.exports = {
     inline: true
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      Popper: ['popper.js', 'default']
+    }),
     new HtmlWebpackPlugin({
       title: 'webpack-starter-kit',
       template: path.resolve('./src/index.html')
