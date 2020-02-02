@@ -2,7 +2,7 @@
   "name": "webpack-bootstrap-starter-kit",
   "version": "1.0.0",
   "description": "Starter Kit with Webpack set up/configured and Bootstrap v4 added with custom theme template for basic website development",
-  "main": "index.js",
+  "main": "./src/js/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
