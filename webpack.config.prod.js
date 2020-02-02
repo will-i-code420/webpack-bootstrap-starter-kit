@@ -1,5 +1,6 @@
 const path = require('path')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -10,7 +11,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'webpack-starter-kit',
       template: path.resolve('./src/index.html')
-    })
+    }),
+    new MiniCssExtractPlugin({
+        filename: '[name].css',
+        chunkFilename: '[id].css'
+      }),
   ],
   module: {
     rules: [
