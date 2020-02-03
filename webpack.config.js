@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
@@ -23,12 +24,17 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       $: 'jquery',
-      Popper: ['popper.js', 'default']
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
     }),
     new HtmlWebpackPlugin({
       title: 'webpack-starter-kit',
       template: path.resolve('./src/index.html')
     }),
+    new MiniCssExtractPlugin({
+        filename: '[name].css',
+        chunkFilename: '[id].css'
+      }),
     new CopyPlugin([
       {from: './src/images', to: 'images/'}
     ]),
@@ -37,11 +43,32 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(sc|sa|c)ss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: true,
+              publicPath: '../css'
+            }
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function() {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ]
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
