@@ -6,7 +6,7 @@ const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
-  entry: ['./src/js/index.js'],
+  entry: './src/js/index.js',
   watch: true,
   watchOptions: {
     aggregateTimeout: 500,

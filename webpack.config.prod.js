@@ -8,11 +8,23 @@ const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'production',
-  entry: ['./src/js/index.js'],
+  entry: './src/js/index.js',
   output: {
-    path: path.resolve(process.cwd(), 'dist')
+    filename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, 'dist')
   },
   optimization: {
+      moduleIds: 'hashed',
+      runtimeChunk: 'single',
+      splitChunks: {
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
+        }
+      },
       minimizer: [
         new OptimizeCSSAssetsPlugin()
       ]
@@ -25,12 +37,12 @@ module.exports = {
       'window.jQuery': 'jquery'
     }),
     new HtmlWebpackPlugin({
+      hash: true,
       title: 'webpack-starter-kit',
       template: path.resolve('./src/index.html')
     }),
     new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: '[id].css'
+      filename: 'style.[contenthash].css'
       }),
     new CopyPlugin([
       {from: './src/images', to: 'images/'}
