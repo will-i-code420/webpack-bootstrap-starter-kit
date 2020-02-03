@@ -4,7 +4,7 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-image-webpack-loader
+const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'production',
@@ -18,8 +18,12 @@ module.exports = {
       ]
     },
   plugins: [
-    new webpack.ProgressPlugin(),
     new CleanWebpackPlugin(),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      'window.jQuery': 'jquery'
+    }),
     new HtmlWebpackPlugin({
       title: 'webpack-starter-kit',
       template: path.resolve('./src/index.html')
@@ -28,15 +32,39 @@ module.exports = {
         filename: '[name].css',
         chunkFilename: '[id].css'
       }),
+    new CopyPlugin([
+      {from: './src/images', to: 'images/'}
+    ]),
   ],
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(sc|sa|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader'
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: true,
+              publicPath: '../css'
+            }
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function() {
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ]
+              }
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       },
       {
@@ -55,8 +83,8 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              outputPath: './images',
-              name: '[name].[ext]'
+              esModule: false,
+              name: 'images/[name].[ext]'
             }
           },
           {
