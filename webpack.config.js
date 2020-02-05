@@ -86,10 +86,24 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            esModule: false,
-            name: 'images/[name].[ext]'
+            name: '[name].[ext]',
+            outputPath: '../images/',
+            publicPath: '../images/'
           }
         }]
+      },
+      {
+        test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '../fonts/',
+              publicPath: '../fonts/'
+            }
+          }
+        ]
       },
       {
         test: /\.html$/,

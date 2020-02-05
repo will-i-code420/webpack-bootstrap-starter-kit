@@ -1,0 +1,15 @@
+// Bootstrap Setup
+@import './app/custom-variables';  // custom variables
+@import './app/custom-bootstrap'; // custom bootstrap overrides
+@import './vendor/bootstrap';  // original bootstrap scss files
+
+// Font Awesome
+@import './vendor/font-awesome';
+
+// App Styling
+
+@import './reset';
+
+body {
+  background-color: green;
+}

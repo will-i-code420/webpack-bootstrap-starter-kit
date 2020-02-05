@@ -11,7 +11,8 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist/js'),
+    publicPath: 'dist'
   },
   optimization: {
       moduleIds: 'hashed',
@@ -42,10 +43,10 @@ module.exports = {
       template: path.resolve('./src/index.html')
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css'
+      filename: '../css/style.[contenthash].css'
       }),
     new CopyPlugin([
-      {from: './src/images', to: 'images/'}
+      {from: './src/images', to: '../images/'}
     ]),
   ],
   module: {
@@ -54,11 +55,7 @@ module.exports = {
         test: /\.(sc|sa|c)ss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              esModule: true,
-              publicPath: '../css'
-            }
+            loader: MiniCssExtractPlugin.loader
           },
           {
             loader: 'css-loader'
@@ -95,8 +92,9 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              esModule: false,
-              name: 'images/[name].[ext]'
+              name: '[name].[ext]',
+              outputPath: '../images/',
+              publicPath: '../images/'
             }
           },
           {
@@ -120,6 +118,19 @@ module.exports = {
               webp: {
                 quality: 20
               }
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '../fonts/',
+              publicPath: '../fonts/'
             }
           }
         ]

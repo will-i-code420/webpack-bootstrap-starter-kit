@@ -2,7 +2,6 @@
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
-@import "../app/custom-bootstrap/custom-bootstrap"; // this is the scss file for overriding bootstrap styling
 
 // *** Optional Components - remove if not using prior to build ***
 @import "~bootstrap/scss/root";
