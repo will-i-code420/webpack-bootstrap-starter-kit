@@ -52,6 +52,11 @@
     button {
       position: absolute;
       right: 0;
+      transition: color 350ms ease;
+
+      &:hover {
+        color: lighten($blue, 20%);
+      }
     }
   }
 
