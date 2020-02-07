@@ -2,7 +2,6 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -28,16 +27,21 @@ module.exports = {
       'window.jQuery': 'jquery'
     }),
     new HtmlWebpackPlugin({
-      title: 'webpack-starter-kit',
-      template: path.resolve('./src/index.html')
+      template: path.resolve('./src/index.html'),
+      filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve('./src/about.html'),
+      filename: 'about.html'
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve('./src/contact.html'),
+      filename: 'contact.html'
     }),
     new MiniCssExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[id].css'
       }),
-    new CopyPlugin([
-      {from: './src/images', to: 'images/'}
-    ]),
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
@@ -46,11 +50,7 @@ module.exports = {
         test: /\.(sc|sa|c)ss$/,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              esModule: true,
-              publicPath: '../css'
-            }
+            loader: MiniCssExtractPlugin.loader
           },
           {
             loader: 'css-loader'
@@ -82,34 +82,27 @@ module.exports = {
         }
       },
       {
-        test: /\.(jpg|jpeg|gif|png|svg|webp)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: '../images/',
-            publicPath: '../images/'
-          }
-        }]
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader'
+        }
       },
       {
         test: /\.(eot|woff|woff2|ttf|svg)(\?\S*)?$/,
         use: [
           {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: '../fonts/',
-              publicPath: '../fonts/'
-            }
+            loader: 'file-loader'
           }
         ]
       },
       {
-        test: /\.html$/,
-        use: {
-          loader: 'html-loader'
-        }
+        test: /\.(jpg|jpeg|gif|png|svg|webp)$/i,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            esModule: false
+          }
+        }]
       }
     ]
   }

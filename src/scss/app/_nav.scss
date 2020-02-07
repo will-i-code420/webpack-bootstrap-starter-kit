@@ -1,17 +1,12 @@
-#top-navbar {
+.top-navbar {
 
   .navbar-brand {
     font-size: 32px;
     font-style: italic;
   }
 
-  .navbar-nav {
-
-  }
-
   .nav-item {
-    margin-right: 1.25rem;
-
+    margin-right: 1.5rem;
   }
 
   .nav-link {
@@ -20,18 +15,48 @@
     &::after {
       content: '';
       position: absolute;
-      width: 100%;
+      margin: 0;
       height: 2px;
+      width: 100%;
       left: 0;
       bottom: 0;
       transform: scaleX(0);
       transform-origin: right;
-      transition: transform 300ms ease-in;
+      transition: transform 300ms ease;
     }
 
     &:hover::after {
       transform: scaleX(1);
       transform-origin: left;
+    }
+  }
+
+  .active > .nav-link {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      margin: 0;
+      height: 2px;
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      transform: scaleX(1);
+    }
+  }
+
+  .nav-search {
+    position: relative;
+
+    button {
+      position: absolute;
+      right: 0;
+      transition: color 350ms ease;
+
+      &:hover {
+        color: lighten($blue, 20%);
+      }
     }
   }
 
