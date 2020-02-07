@@ -44,13 +44,77 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
           </form>
-
         </div>
       </nav>
     </header>
 
-    <main>
-
+    <main class="pt-5 bg-dark">
+      <section id="basic-contact-form" class="container py-5">
+        <h1 class="text-center pb-4 text-white">Contact Us</h1>
+        <form class="bg-light p-5" action="index.html" method="post">
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="first-name">First Name</label>
+              <input type="text" class="form-control" id="first-name" placeholder="Mark" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="last-name">Last Name</label>
+              <input type="text" class="form-control" id="last-name" placeholder="Otto" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="username">Username</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                </div>
+                <input type="text" class="form-control" id="username"  aria-describedby="inputGroupPrepend2" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 offset-1 mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="example@gmail.com" required>
+            </div>
+            <div class="col-md-4 offset-1 mb-3">
+              <label for="phone">Phone</label>
+              <input type="tel" class="form-control" id="phone" placeholder="123-456-7890" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="city">City</label>
+              <input type="text" class="form-control" id="city" required>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="state">State</label>
+              <select class="custom-select" id="state" required>
+                <option selected disabled value="">Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="zip">Zip</label>
+              <input type="number" class="form-control" id="zip" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-8 offset-2">
+              <label for="extra-info">Extra Info</label>
+              <textarea class="form-control" id="extra-info" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group text-center">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+              <label class="form-check-label" for="invalidCheck2">
+                Agree to terms and conditions
+              </label>
+            </div>
+            <button class="btn btn-primary mt-3" type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
     </main>
 
     <footer>
