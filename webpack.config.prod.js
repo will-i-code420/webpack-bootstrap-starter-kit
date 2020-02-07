@@ -4,15 +4,13 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'production',
   entry: './src/js/index.js',
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist/js'),
-    publicPath: 'dist'
+    path: path.resolve(__dirname, 'dist')
   },
   optimization: {
       moduleIds: 'hashed',
@@ -38,16 +36,20 @@ module.exports = {
       'window.jQuery': 'jquery'
     }),
     new HtmlWebpackPlugin({
-      hash: true,
-      title: 'webpack-starter-kit',
-      template: path.resolve('./src/index.html')
+      template: path.resolve('./src/index.html'),
+      filename: 'index.[contenthash].html'
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve('./src/about.html'),
+      filename: 'about.[contenthash].html'
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve('./src/contact.html'),
+      filename: 'contact.[contenthash].html'
     }),
     new MiniCssExtractPlugin({
-      filename: '../css/style.[contenthash].css'
+      filename: 'style.[contenthash].css'
       }),
-    new CopyPlugin([
-      {from: './src/images', to: '../images/'}
-    ]),
   ],
   module: {
     rules: [
@@ -87,14 +89,15 @@ module.exports = {
         }
       },
       {
-        test: /\.(jpg|jpeg|gif|png|svg|webp)$/,
+        test: /\.(jpg|jpeg|gif|png|webp)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: '../images/',
-              publicPath: '../images/'
+              esModule: false,
+              name: '[name].[contenthash].[ext]',
+              outputPath: 'images',
+              publicPath: 'images'
             }
           },
           {
@@ -128,9 +131,9 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[name].[ext]',
-              outputPath: '../fonts/',
-              publicPath: '../fonts/'
+              name: '[name].[contenthash].[ext]',
+              outputPath: 'fonts',
+              publicPath: 'fonts'
             }
           }
         ]
@@ -138,10 +141,7 @@ module.exports = {
       {
         test: /\.html$/,
         use: {
-          loader: 'html-loader',
-          options: {
-            attrs: [':src', ':href']
-          }
+          loader: 'html-loader'
         }
       }
     ]
