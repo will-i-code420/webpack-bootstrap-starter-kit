@@ -1,0 +1,59 @@
+#contact-cards {
+
+  .card {
+    box-shadow:
+      0 1px 1.7px rgba(0, 0, 0, 0.136),
+      0 2.9px 4.6px rgba(0, 0, 0, 0.195),
+      0 6.9px 11.2px rgba(0, 0, 0, 0.254),
+      0 23px 37px rgba(0, 0, 0, 0.39);
+      transition: transform 400ms;
+      &:hover {
+        transform: scale(1.025);
+      }
+  }
+
+  .background-img {
+    clip-path: polygon(50% 0%, 100% 0, 100% 100%, 50% 79%, 0 100%, 0 100%, 0 0);
+  }
+
+  .avatar-img {
+    height: 150px;
+    width: 150px;
+    margin: -135px auto 0 auto;
+    z-index: 100;
+  }
+
+  .social-links {
+    list-style: none;
+
+    a {
+      font-size: 34px;
+    }
+
+    .fa-facebook-square {
+      transition: color 400ms;
+
+      &:hover {
+        color: lighten($blue, 20%);
+      }
+    }
+
+    .fa-twitter-square {
+      color: lighten($blue, 20%);
+      transition: color 400ms;
+
+      &:hover {
+        color: lighten($blue, 30%);
+      }
+    }
+    .fa-instagram {
+      color: #833ab4;
+      transition: color 400ms;
+
+      &:hover {
+        color: #c13584;
+      }
+    }
+  }
+
+}
