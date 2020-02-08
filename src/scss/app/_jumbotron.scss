@@ -1,0 +1,18 @@
+#fluid-jumbotron-example {
+
+  .main-img-container {
+    position: relative;
+
+    .card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      opacity: .65;
+    }
+
+    .fa-quote-left {
+      font-size: 30px;
+    }
+  }
+
+}
