@@ -82,6 +82,12 @@ module.exports = {
         }
       },
       {
+        test: /\.hbs$/,
+        use: {
+          loader: 'handlebars-loader'
+        }
+      },
+      {
         test: /\.html$/,
         use: {
           loader: 'html-loader'
